@@ -1,15 +1,15 @@
 #include "CalcTree.h"
-#ifndef CalcTree_H
-#define CalcTree_H
+#ifndef Calculator_H
+#define Calculator_H
 
 
-typedef struct {
+typedef struct Calculator{
 	char input[200];
 	double result;
 	addrNode CalcTree;	
 }Calculator;
 
-double calculate(addrNode root, bool *isSuccess);
+double startCalculation(addrNode root, bool *isSuccess);
 /**
  * [Modified] From https://www.programmersought.com/article/95294413292/
  * Melakukan perhitungan terhadap suatu sub-tree

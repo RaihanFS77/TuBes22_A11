@@ -14,14 +14,16 @@
 #define BAGI '/'
 #define AKAR_KUADRAT 'v'
 #define PANGKAT '^'
-#define PERSENTASI '%'
+#define PERSENTASE '%'
+
+#define MAX 0x3f3f3f3f
 
 #ifndef CalcTree_H
 #define CalcTree_H
 
 typedef struct TNode* addrNode;
 
-typedef struct  TNode{
+typedef struct TNode{
     bool isSymbol;
     double number;
     char symbol; 
@@ -30,5 +32,6 @@ typedef struct  TNode{
 }Node;
 
 double result;
-char[200] UserInput;
+char UserInput[100];
+
 #endif
