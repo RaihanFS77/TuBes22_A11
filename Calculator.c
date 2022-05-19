@@ -269,6 +269,7 @@ return true;
          * Mengembalikan false jika terdapat karakter ilegal
          */
     }
+}
 
     void checkFrontMinus(char *expression)
     {
