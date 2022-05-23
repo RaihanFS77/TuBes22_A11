@@ -22,7 +22,7 @@ double startCalculation(addrNode Node, bool *isSuccess)
             break;
         }
         // bagi
-        case KALI:
+        case BAGI:
         {
             // cek apabila terjadi pembagian oleh 0
             if (startCalculation(Node->rightChild, isSuccess) == 0)
@@ -34,7 +34,7 @@ double startCalculation(addrNode Node, bool *isSuccess)
                 return startCalculation(Node->leftChild, isSuccess) / startCalculation(Node->rightChild, isSuccess);
             break;
         }
-        case BAGI:
+        case KALI:
         {
             // perkalian
             return startCalculation(Node->leftChild, isSuccess) * startCalculation(Node->rightChild, isSuccess);
@@ -196,11 +196,12 @@ addrNode expressionToTree(char input[], int start, int end)
      * Membuat expression tree
      * Mengembalikan tree yang telah berisi expression
      */
-    int num;
+    double num;
     addrNode Node = (addrNode)malloc(sizeof(struct TNode));
     if (start > end)
         return NULL;
     num = checkString(input, start, end);
+    
     if (num != MAX)
     {
         Node->isSymbol = false;
@@ -212,9 +213,11 @@ addrNode expressionToTree(char input[], int start, int end)
     int posNode = findOperator(input, start, end);
     if (posNode == -1)
         return expressionToTree(input, start + 1, end - 1);
+
     Node->isSymbol = true;
+    Node->symbol = input[posNode];
     Node->isSymbol = expressionToTree(input, start, posNode - 1);
-    Node->rightChild = expressionToTree(input, posNode = 1, end);
+    Node->rightChild = expressionToTree(input, posNode + 1, end);
     return Node;
 }
 
@@ -271,7 +274,7 @@ return true;
     }
 }
 
-    void checkFrontMinus(char *expression)
+void checkFrontMinus(char *expression)
     {
         /**
          * Mengecek apakah simbol pertama merupakan minus
@@ -290,7 +293,7 @@ return true;
         }
     }
 
-    void insertExpression(Calculator * calculator)
+void insertExpression(Calculator * calculator)
     {
         // meminta input dari pengguna
         printf("\n\n");
@@ -307,7 +310,7 @@ return true;
          */
     }
 
-    bool isCalculationSuccess(Calculator * calculator, addrNode Node)
+bool isCalculationSuccess(Calculator * calculator, addrNode Node)
     {
         /**
          * Melakukan kalkulasi ekspresi matematika pada tree
@@ -315,11 +318,50 @@ return true;
          * Mengembalikan false jika proses kalkulasi gagal
          */
         bool isSuccess = true;
+
         calculator->result = startCalculation(Node, &isSuccess);
+
+        return isSuccess;
     }
 
-    void printResult(Calculator calculator, bool isSuccess)
+void printResult(Calculator calculator, bool isSuccess)
     {
+        system("cls");
+	
+	// print calculator sesuai dengan format
+    if(!isSuccess){
+    	// jika proses kalkulasi tidak berhasil
+        printf("\n\n");
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33s","Math Error: Can't Divide by Zero");
+        printf("\xB3   \xB3\n");
+        sleep(2);
+    }
+    else if (ceil(calculator.result) > calculator.result){
+    	// jika proses kalkulasi berhasil dan hasilnya adalah bilangan desimal
+        printf("\n\n");
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33f",calculator.result);
+        printf("\xB3   \xB3\n");
+
+    }
+	else{
+		// jika proses kalkulasi berhasil dan hasilnya adalah bilangan bulat
+        printf("\n\n");
+
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33d",(int)calculator.result);
+        printf("\xB3   \xB3\n");
+    }
         /**
          * Menampilkan hasil expresi
          * IS : layar kosong
