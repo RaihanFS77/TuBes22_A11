@@ -200,8 +200,8 @@ addrNode expressionToTree(char input[], int start, int end)
     addrNode Node = (addrNode)malloc(sizeof(struct TNode));
     if (start > end)
         return NULL;
+            
     num = checkString(input, start, end);
-    
     if (num != MAX)
     {
         Node->isSymbol = false;
@@ -210,14 +210,18 @@ addrNode expressionToTree(char input[], int start, int end)
         Node->rightChild = NULL;
         return Node;
     }
+
     int posNode = findOperator(input, start, end);
+
     if (posNode == -1)
         return expressionToTree(input, start + 1, end - 1);
 
     Node->isSymbol = true;
     Node->symbol = input[posNode];
-    Node->isSymbol = expressionToTree(input, start, posNode - 1);
+    Node->leftChild = expressionToTree(input, start, posNode - 1);
     Node->rightChild = expressionToTree(input, posNode + 1, end);
+
+    printf("log1");
     return Node;
 }
 
@@ -262,7 +266,7 @@ bool isValidExpression(char expression[])
 
     // apakah ada simbol yang tidak merupakan operator matematis
 
-    for (totalChar = countStringLength(expression); totalChar >= 0; totalChar--)
+    for (totalChar = (countStringLength(expression) - 1 ); totalChar >= 0; totalChar--)
     {
         if (!isdigit(expression[totalChar]) && !isOperator(expression[totalChar]) && !isBracket(expression[totalChar]))
         {
@@ -287,7 +291,7 @@ bool isOperator(char expression){
 }
 
 bool isBracket(char expression){
-	if(expression ==KURUNG_BUKA || expression ==KURUNG_TUTUP)
+	if(expression == KURUNG_BUKA || expression == KURUNG_TUTUP)
 		return true;
 	return false;
 }
