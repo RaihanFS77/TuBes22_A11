@@ -300,7 +300,22 @@ bool isBracket(char expression){
 		return true;
 	return false;
 }
-
+void checkForFormatting(char *expression){
+	checkWhiteSpace(expression);
+	checkFrontBracketAsKali(expression);
+	checkFrontMinus(expression);
+}
+void checkWhiteSpace(char *expression){
+	int count,countFromWS;
+	for(count = 0 ;expression[count] !='\0'; count++){
+		if(expression[count] == ' ' ){
+			for(countFromWS=count;expression[countFromWS+1] != '\0';countFromWS++){
+				expression[countFromWS] = expression[countFromWS+1];
+				expression[countFromWS+1] = '\0';
+			}
+		}
+	}
+}
 void checkFrontMinus(char *expression)
     {
         /**
@@ -320,6 +335,29 @@ void checkFrontMinus(char *expression)
         }
     }
 
+void checkFrontBracketAsKali(char *expression){
+	int count,countFromBracket,countTemp;
+	char temp[countStringLength(expression)];
+	for(count = 0;expression[count] !='\0'; count++){
+		countTemp = 0;
+		if(isdigit(expression[count-1]) && expression[count] == '(' ){
+			for(countFromBracket=count;expression[countFromBracket] != '\0';countFromBracket++){
+				temp[countTemp] = expression[countFromBracket];
+				countTemp++;
+			}
+			countFromBracket=count;
+			for(countTemp = 0;temp[countTemp] != '\0';countTemp++){
+				expression[countFromBracket+1] = temp[countTemp];
+				countFromBracket++;
+			}
+			expression[count] = '*';
+		}
+	}
+	for(count=0;expression[count] != '\0';count++){
+		printf("%c",expression[count]);
+	}
+}
+
 void insertExpression(Calculator * calculator)
     {
         // meminta input dari pengguna
@@ -327,7 +365,7 @@ void insertExpression(Calculator * calculator)
         // gridLayout();
         printf("Enter your mathematical expression: ");
         fflush(stdin);
-        scanf("%s", calculator->input);
+        gets(calculator->input);
         printf("%s",calculator->input);
         printf("\n\n");
 

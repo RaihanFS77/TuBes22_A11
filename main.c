@@ -8,16 +8,15 @@
 int main(int argc, char *argv[]) {
 	printf("Testing");
 	Calculator test;
-
 	testZone:
-
 	createCalculator(&test);
 	insertExpression(&test);
+	printf("length %d\n",countStringLength(test.input));
+	checkForFormatting(&test.input);
 	if(!isValidExpression(test.input)){
 		sleep(1);
 		goto testZone;
 	}
-	checkFrontMinus(test.input);
 	test.CalcTree = expressionToTree(test.input,0,countStringLength(test.input)-1);
 	printf("expression to tree success maybe?");
 
