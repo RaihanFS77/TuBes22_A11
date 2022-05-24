@@ -152,9 +152,9 @@ int findOperator(char input[], int start, int end)
                 if (counter != start && isdigit(input[counter - 1]))
                 {
                     posPlusOrSub = counter;
-                    numPlusOrSub++;
-                    // check apabila dibelakangnya adalah kurung buka/kurung tutup
+                    numPlusOrSub++;  
                 }
+                 // check apabila dibelakangnya adalah kurung buka/kurung tutup
                 else if ((input[counter - 1] == KURUNG_BUKA || input[counter - 1] == KURUNG_TUTUP))
                 {
                     posPlusOrSub = counter;
@@ -169,7 +169,7 @@ int findOperator(char input[], int start, int end)
             }
         }
     }
-
+	
     // posisi operator yang diprioritaskan
     int posOperator = -1;
 
@@ -180,7 +180,7 @@ int findOperator(char input[], int start, int end)
         posOperator = posDivOrMul;
     else if (numPowOrRoot)
         posOperator = posPowOrRoot;
-
+	printf("pos operator : %d\n",posOperator);
     return posOperator;
 
     /**
@@ -250,28 +250,46 @@ void createCalculator(Calculator *calculator)
     calculator->CalcTree = (addrNode)malloc(sizeof(Node));
 }
 
-bool isValidExpression(char *expression)
+bool isValidExpression(char expression[])
 {
 
+    /**
+     * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
+     * Mengembalikan true jika tidak ada karakter ilegal
+     * Mengembalikan false jika terdapat karakter ilegal
+     */
     int totalChar;
 
     // apakah ada simbol yang tidak merupakan operator matematis
 
-    for (totalChar = strlen(expression) - 1; totalChar >= 0; totalChar--)
+    for (totalChar = countStringLength(expression); totalChar >= 0; totalChar--)
     {
-        if (!isdigit(expression[totalChar]) && expression[totalChar] != MINUS && expression[totalChar] != PLUS && expression[totalChar] != BAGI && expression[totalChar] != KALI && expression[totalChar] != PANGKAT && expression[totalChar] != PERSENTASE && expression[totalChar] != AKAR_KUADRAT && expression[totalChar] != PointDecimal && expression[totalChar] != KURUNG_BUKA && expression[totalChar] != KURUNG_TUTUP)
+        if (!isdigit(expression[totalChar]) && !isOperator(expression[totalChar]) && !isBracket(expression[totalChar]))
         {
             printf("Ekspresi matematis tidak valid!\n");
             return false;
         }
-return true;
-
-        /**
-         * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
-         * Mengembalikan true jika tidak ada karakter ilegal
-         * Mengembalikan false jika terdapat karakter ilegal
-         */
     }
+	return true;
+}
+
+bool isOperator(char expression){
+	if(	expression ==PointDecimal || 
+		expression ==PLUS ||
+		expression ==MINUS ||
+		expression ==KALI ||
+		expression ==BAGI ||
+		expression ==AKAR_KUADRAT ||
+		expression ==PANGKAT ||
+		expression ==PERSENTASE)
+		return true;
+	return false;
+}
+
+bool isBracket(char expression){
+	if(expression ==KURUNG_BUKA || expression ==KURUNG_TUTUP)
+		return true;
+	return false;
 }
 
 void checkFrontMinus(char *expression)
@@ -283,9 +301,9 @@ void checkFrontMinus(char *expression)
          * FS2 : ekspresi string tidak dimanipulasi
          */
         int forLoop;
-        if (expression[0] = '-')
+        if (expression[0] == '-')
         {
-            for (forLoop = strlen(expression) - 1; forLoop >= 0; forLoop--)
+            for (forLoop = countStringLength(expression); forLoop >= 0; forLoop--)
             {
                 expression[forLoop + 1] = expression[forLoop];
             }
@@ -301,6 +319,7 @@ void insertExpression(Calculator * calculator)
         printf("Enter your mathematical expression: ");
         fflush(stdin);
         scanf("%s", calculator->input);
+        printf("%s",calculator->input);
         printf("\n\n");
 
         /**
@@ -382,9 +401,9 @@ void printResult(Calculator calculator, bool isSuccess)
             printf("continue? y/n : ");
             fflush(stdin);
             scanf("%c", &choice);
-            if (choice == "Y" || choice == "y")
+            if (choice == 'Y' || choice == 'y')
                 return true;
-            else if (choice == "N" || choice == "n")
+            else if (choice == 'N' || choice == 'n')
                 return false;
             else
             {

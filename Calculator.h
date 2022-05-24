@@ -62,7 +62,8 @@ bool isValidExpression(char *expression);
  * Mengembalikan true jika tidak ada karakter ilegal
  * Mengembalikan false jika terdapat karakter ilegal
  */
- 
+bool isOperator(char expression);
+bool isBracket(char expression);
 void checkFrontMinus(char *expression);
 /**
  * Mengecek apakah simbol pertama merupakan minus
