@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 		goto testZone;
 	}
 	checkFrontMinus(test.input);
-	test.CalcTree = expressionToTree(test.input,0,countStringLength(test.input));
+	test.CalcTree = expressionToTree(test.input,0,countStringLength(test.input)-1);
 	printf("expression to tree success maybe?");
 
 	bool sukses = isCalculationSuccess(&test, test.CalcTree);
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 	bool isSuccess;
 	test.result = startCalculation(test.CalcTree, &isSuccess);
 
-	printf("%f",test.result);
+	printf("\n\n-hasilnya : %f\n",test.result);
 
 
 	

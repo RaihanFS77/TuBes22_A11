@@ -162,6 +162,11 @@ int findOperator(char input[], int start, int end)
                 }
             }
 
+            else if(input[counter] == KALI || input[counter] == BAGI || input[counter] == PERSENTASE){
+                posDivOrMul = counter;
+                numDivOrMul++; 
+            }
+
             else if (input[counter] == PANGKAT || input[counter] == AKAR_KUADRAT)
             {
                 posPowOrRoot = counter;
