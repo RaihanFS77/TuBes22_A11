@@ -185,7 +185,6 @@ int findOperator(char input[], int start, int end)
         posOperator = posDivOrMul;
     else if (numPowOrRoot)
         posOperator = posPowOrRoot;
-	printf("pos operator : %d\n",posOperator);
     return posOperator;
 
     /**
@@ -226,7 +225,6 @@ addrNode expressionToTree(char input[], int start, int end)
     Node->leftChild = expressionToTree(input, start, posNode - 1);
     Node->rightChild = expressionToTree(input, posNode + 1, end);
 
-    printf("log1");
     return Node;
 }
 
@@ -264,6 +262,17 @@ bool isValidExpression(char expression[])
 
     /**
      * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
+     * Mengembalikan true jika tidak ada karakter ilegal dan jumlah kurung buka tutup sama
+     * Mengembalikan false jika terdapat karakter ilegal dan atau kurung buka tutup tidak sama
+     */
+    if(checkInputAsRule(expression) && isBracketEqual(expression))
+    	return true;
+	return false;
+}
+
+bool checkInputAsRule(char expression[]){
+	/**
+     * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
      * Mengembalikan true jika tidak ada karakter ilegal
      * Mengembalikan false jika terdapat karakter ilegal
      */
@@ -280,6 +289,21 @@ bool isValidExpression(char expression[])
         }
     }
 	return true;
+}
+
+bool isBracketEqual(char expression[]){
+	int countOBracket=0,countCBracket=0;
+	int count;
+	for(count = 0;expression[count] != '\0';count++){
+		if(expression[count] == '(')
+			countOBracket++;
+		else if(expression[count] == ')')
+			countCBracket++;
+	}
+	if(countOBracket == countCBracket)
+		return true;
+	printf("jumlah kurung buka dan kurung tutup tidak seimbang\n");
+	return false;
 }
 
 bool isOperator(char expression){
@@ -336,25 +360,26 @@ void checkFrontMinus(char *expression)
     }
 
 void checkFrontBracketAsKali(char *expression){
-	int count,countFromBracket,countTemp;
-	char temp[countStringLength(expression)];
+	int count,countFromBracket,countTemp,countLength;
+	char temp[countStringLength(expression)+20];
 	for(count = 0;expression[count] !='\0'; count++){
 		countTemp = 0;
+		countFromBracket = 0;
 		if(isdigit(expression[count-1]) && expression[count] == '(' ){
+			countLength= 0;
 			for(countFromBracket=count;expression[countFromBracket] != '\0';countFromBracket++){
 				temp[countTemp] = expression[countFromBracket];
 				countTemp++;
+				countLength++;
 			}
 			countFromBracket=count;
-			for(countTemp = 0;temp[countTemp] != '\0';countTemp++){
+			for(countTemp = 0;countTemp<countLength;countTemp++){
 				expression[countFromBracket+1] = temp[countTemp];
+				temp[countTemp] = '\0';
 				countFromBracket++;
 			}
 			expression[count] = '*';
 		}
-	}
-	for(count=0;expression[count] != '\0';count++){
-		printf("%c",expression[count]);
 	}
 }
 

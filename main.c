@@ -11,7 +11,6 @@ int main(int argc, char *argv[]) {
 	testZone:
 	createCalculator(&test);
 	insertExpression(&test);
-	printf("length %d\n",countStringLength(test.input));
 	checkForFormatting(&test.input);
 	if(!isValidExpression(test.input)){
 		sleep(1);
