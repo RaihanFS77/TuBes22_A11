@@ -365,7 +365,7 @@ void checkFrontBracketAsKali(char *expression){
 	for(count = 0;expression[count] !='\0'; count++){
 		countTemp = 0;
 		countFromBracket = 0;
-		if(isdigit(expression[count-1]) && expression[count] == '(' ){
+		if((isdigit(expression[count-1])||expression[count-1]==')') && expression[count] == '(' ){
 			countLength= 0;
 			for(countFromBracket=count;expression[countFromBracket] != '\0';countFromBracket++){
 				temp[countTemp] = expression[countFromBracket];
