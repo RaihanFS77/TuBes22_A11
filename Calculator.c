@@ -358,7 +358,6 @@ void checkFrontMinus(char *expression)
             expression[0] = '0';
         }
     }
-
 void checkFrontBracketAsKali(char *expression){
 	int count,countFromBracket,countTemp,countLength;
 	char temp[countStringLength(expression)+20];
@@ -415,73 +414,55 @@ bool isCalculationSuccess(Calculator * calculator, addrNode Node)
         return isSuccess;
     }
 
-void printResult(Calculator calculator, bool isSuccess)
-    {
-        system("cls");
+void printResult(Calculator calculator, bool isSuccess){
+	system("cls");
 	
 	// print calculator sesuai dengan format
     if(!isSuccess){
-    	// jika proses kalkulasi tidak berhasil
+    	// Gagal
         printf("\n\n");
-        printf("  \xB3  \xB3");
-        printf("  %-35s",calculator.input);
-        printf("\xB3   \xB3\n");
-        printf("  \xB3  \xB3");
-        printf("  = %-33s","Math Error: Can't Divide by Zero");
-        printf("\xB3   \xB3\n");
+        printf("  = %s","Error : Tidak dapat membagi dengan 0");
         sleep(2);
     }
     else if (ceil(calculator.result) > calculator.result){
-    	// jika proses kalkulasi berhasil dan hasilnya adalah bilangan desimal
+    	// Berhasil dan menghasilkan desimal
         printf("\n\n");
-        printf("  \xB3  \xB3");
-        printf("  %-35s",calculator.input);
-        printf("\xB3   \xB3\n");
-        printf("  \xB3  \xB3");
-        printf("  = %-33f",calculator.result);
-        printf("\xB3   \xB3\n");
-
+         printf("\t-- RESULT OF THE CALCULATION -- \n\n");
+        printf("\t|\t%s",calculator.input);
+        printf(" = %.3f\t|\n",calculator.result);
     }
 	else{
-		// jika proses kalkulasi berhasil dan hasilnya adalah bilangan bulat
+		// Berhasil dan menghasilkan bilangan bulat
         printf("\n\n");
-
-        printf("  \xB3  \xB3");
-        printf("  %-35s",calculator.input);
-        printf("\xB3   \xB3\n");
-        printf("  \xB3  \xB3");
-        printf("  = %-33d",(int)calculator.result);
-        printf("\xB3   \xB3\n");
+        printf("\t-- RESULT OF THE CALCULATION -- \n\n");
+        printf("\t|\t%s",calculator.input);
+        printf(" = %d\t|\n",(int)calculator.result);
     }
-        /**
-         * Menampilkan hasil expresi
-         * IS : layar kosong
-         * FS : tampil hasil perhitungan ekspresi aritmatik dan ekspresinya
-         */
-    }
-
-    bool stayCalculating()
+}
+   
+bool stayCalculating()
     {
         /**
          * mengecek apakah pengguna mengulang proses kalkulasi
          * Mengembalikan true jika iya
          * Mengembalikan false jika tidak
          */
-        char choice;
+        char input;
         while (true)
         {
-            printf("continue? y/n : ");
+            printf("\n\t[] Tetap menggunakan kalkulator (y/n) [] :");
             fflush(stdin);
-            scanf("%c", &choice);
-            if (choice == 'Y' || choice == 'y')
+            scanf("%c", &input);
+            input = toupper(input);
+            if (input == 'Y')
                 return true;
-            else if (choice == 'N' || choice == 'n')
+            else if (input == 'N')
                 return false;
             else
             {
-                printf("Invalid input, please input "
-                       "y/n"
-                       "\n");
+                printf("Invalid input please try again \n");
+                sleep(1);
             }
         }
     }
+

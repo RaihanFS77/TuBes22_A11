@@ -6,25 +6,56 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
-	printf("Testing");
-	Calculator test;
-	testZone:
-	createCalculator(&test);
-	insertExpression(&test);
-	checkForFormatting(&test.input);
-	if(!isValidExpression(test.input)){
-		sleep(1);
-		goto testZone;
+
+	Calculator kalkulator;
+
+	
+	while(true){
+		StartOfCalc:
+	system("cls");
+		//Inisialisasi Kalkulator
+		createCalculator(&kalkulator);
+
+		//Input ekspresi matematika
+		insertExpression(&kalkulator);
+
+		//Melakukan reformatting apabila ditemukan kejanggalan
+		checkForFormatting(&kalkulator.input);
+		printf("%s",kalkulator.input);
+		getch();
+		
+		//Melakukan test validasi ekspresi matematis
+		if(!isValidExpression(kalkulator.input)){
+			sleep(1);
+			goto StartOfCalc;
+		}
+
+		
+
+	//Memasukan ekspresi menjadi binary tree
+	kalkulator.CalcTree = expressionToTree(kalkulator.input,0,countStringLength(kalkulator.input)-1);
+
+	//Start the calculation process
+		bool sukses = true;
+		kalkulator.result = startCalculation(kalkulator.CalcTree,&sukses);
+
+	//Print the result
+	printResult(kalkulator,sukses);
+
+	//Dealokasi Tree
+	deleteTree(kalkulator.CalcTree);
+
+	//Apabila success maka disimpan data nya ke history
+	if(sukses){
+	saveHistory(kalkulator.input,kalkulator.result);
 	}
-	test.CalcTree = expressionToTree(test.input,0,countStringLength(test.input)-1);
-	printf("expression to tree success maybe?");
 
-	bool sukses = isCalculationSuccess(&test, test.CalcTree);
-	printf("iscalculationsuccess ?");
-	bool isSuccess;
-	test.result = startCalculation(test.CalcTree, &isSuccess);
+	if(!stayCalculating()){
+		break;
+	}
 
-	printf("\n\n-hasilnya : %f\n",test.result);
+	}
+	
 
 
 	

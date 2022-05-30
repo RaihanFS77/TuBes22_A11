@@ -11,7 +11,8 @@ typedef struct Calculator{
 
 double startCalculation(addrNode root, bool *isSuccess);
 /**
- * [Modified] From https://www.programmersought.com/article/95294413292/
+ * Original author From https://www.programmersought.com/article/95294413292/
+ * [Modified by Inter Alia and ZharMedia]
  * Melakukan perhitungan terhadap suatu sub-tree
  * Mengembalikan hasil perhitungan jika terdapat operator (root berisi operator)
  * Mengembalikan nilai number jika tidak terdapat operator (root berisi number)
@@ -19,7 +20,8 @@ double startCalculation(addrNode root, bool *isSuccess);
 
 double checkString(char str[],int start,int end);
 /**
- * [Modified] From https://www.programmersought.com/article/95294413292/
+ * Original Author From https://www.programmersought.com/article/95294413292/
+ * [Modified by Inter Alia and ZharMedia]
  * Melakukan pengecekan terhadap suatu string
  * Mengembalikan hasil konversi number jika tidak ditemukan operator pada string
  * Mengembalikan nilai MAX jika terdapat operator pada string
@@ -36,7 +38,8 @@ int findOperator(char str[],int start,int end);
 
 addrNode expressionToTree(char str[],int start,int end);
 /**
- * [Modified] From https://www.programmersought.com/article/95294413292/
+ * Original Author From https://www.programmersought.com/article/95294413292/
+ * [Modified by Inter Alia and ZharMedia]
  * Membuat expression tree
  * Mengembalikan tree yang telah berisi expression
  */
