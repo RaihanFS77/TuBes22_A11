@@ -22,7 +22,7 @@ double startCalculation(addrNode Node, bool *isSuccess)
             break;
         }
         // bagi
-        case KALI:
+        case BAGI:
         {
             // cek apabila terjadi pembagian oleh 0
             if (startCalculation(Node->rightChild, isSuccess) == 0)
@@ -34,7 +34,7 @@ double startCalculation(addrNode Node, bool *isSuccess)
                 return startCalculation(Node->leftChild, isSuccess) / startCalculation(Node->rightChild, isSuccess);
             break;
         }
-        case BAGI:
+        case KALI:
         {
             // perkalian
             return startCalculation(Node->leftChild, isSuccess) * startCalculation(Node->rightChild, isSuccess);
@@ -152,14 +152,19 @@ int findOperator(char input[], int start, int end)
                 if (counter != start && isdigit(input[counter - 1]))
                 {
                     posPlusOrSub = counter;
-                    numPlusOrSub++;
-                    // check apabila dibelakangnya adalah kurung buka/kurung tutup
+                    numPlusOrSub++;  
                 }
+                 // check apabila dibelakangnya adalah kurung buka/kurung tutup
                 else if ((input[counter - 1] == KURUNG_BUKA || input[counter - 1] == KURUNG_TUTUP))
                 {
                     posPlusOrSub = counter;
                     numPlusOrSub++;
                 }
+            }
+
+            else if(input[counter] == KALI || input[counter] == BAGI || input[counter] == PERSENTASE){
+                posDivOrMul = counter;
+                numDivOrMul++; 
             }
 
             else if (input[counter] == PANGKAT || input[counter] == AKAR_KUADRAT)
@@ -169,7 +174,7 @@ int findOperator(char input[], int start, int end)
             }
         }
     }
-
+	
     // posisi operator yang diprioritaskan
     int posOperator = -1;
 
@@ -180,7 +185,6 @@ int findOperator(char input[], int start, int end)
         posOperator = posDivOrMul;
     else if (numPowOrRoot)
         posOperator = posPowOrRoot;
-
     return posOperator;
 
     /**
@@ -196,10 +200,11 @@ addrNode expressionToTree(char input[], int start, int end)
      * Membuat expression tree
      * Mengembalikan tree yang telah berisi expression
      */
-    int num;
+    double num;
     addrNode Node = (addrNode)malloc(sizeof(struct TNode));
     if (start > end)
         return NULL;
+            
     num = checkString(input, start, end);
     if (num != MAX)
     {
@@ -209,12 +214,17 @@ addrNode expressionToTree(char input[], int start, int end)
         Node->rightChild = NULL;
         return Node;
     }
+
     int posNode = findOperator(input, start, end);
+
     if (posNode == -1)
         return expressionToTree(input, start + 1, end - 1);
+
     Node->isSymbol = true;
-    Node->isSymbol = expressionToTree(input, start, posNode - 1);
-    Node->rightChild = expressionToTree(input, posNode = 1, end);
+    Node->symbol = input[posNode];
+    Node->leftChild = expressionToTree(input, start, posNode - 1);
+    Node->rightChild = expressionToTree(input, posNode + 1, end);
+
     return Node;
 }
 
@@ -247,31 +257,90 @@ void createCalculator(Calculator *calculator)
     calculator->CalcTree = (addrNode)malloc(sizeof(Node));
 }
 
-bool isValidExpression(char *expression)
+bool isValidExpression(char expression[])
 {
 
+    /**
+     * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
+     * Mengembalikan true jika tidak ada karakter ilegal dan jumlah kurung buka tutup sama
+     * Mengembalikan false jika terdapat karakter ilegal dan atau kurung buka tutup tidak sama
+     */
+    if(checkInputAsRule(expression) && isBracketEqual(expression))
+    	return true;
+	return false;
+}
+
+bool checkInputAsRule(char expression[]){
+	/**
+     * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
+     * Mengembalikan true jika tidak ada karakter ilegal
+     * Mengembalikan false jika terdapat karakter ilegal
+     */
     int totalChar;
 
     // apakah ada simbol yang tidak merupakan operator matematis
 
-    for (totalChar = strlen(expression) - 1; totalChar >= 0; totalChar--)
+    for (totalChar = (countStringLength(expression) - 1 ); totalChar >= 0; totalChar--)
     {
-        if (!isdigit(expression[totalChar]) && expression[totalChar] != MINUS && expression[totalChar] != PLUS && expression[totalChar] != BAGI && expression[totalChar] != KALI && expression[totalChar] != PANGKAT && expression[totalChar] != PERSENTASE && expression[totalChar] != AKAR_KUADRAT && expression[totalChar] != PointDecimal && expression[totalChar] != KURUNG_BUKA && expression[totalChar] != KURUNG_TUTUP)
+        if (!isdigit(expression[totalChar]) && !isOperator(expression[totalChar]) && !isBracket(expression[totalChar]))
         {
             printf("Ekspresi matematis tidak valid!\n");
             return false;
         }
-return true;
-
-        /**
-         * Mengecek apakah pada string ekspresi memuat karakter illegal (bukan operator/simbol matematis)
-         * Mengembalikan true jika tidak ada karakter ilegal
-         * Mengembalikan false jika terdapat karakter ilegal
-         */
     }
+	return true;
 }
 
-    void checkFrontMinus(char *expression)
+bool isBracketEqual(char expression[]){
+	int countOBracket=0,countCBracket=0;
+	int count;
+	for(count = 0;expression[count] != '\0';count++){
+		if(expression[count] == '(')
+			countOBracket++;
+		else if(expression[count] == ')')
+			countCBracket++;
+	}
+	if(countOBracket == countCBracket)
+		return true;
+	printf("jumlah kurung buka dan kurung tutup tidak seimbang\n");
+	return false;
+}
+
+bool isOperator(char expression){
+	if(	expression ==PointDecimal || 
+		expression ==PLUS ||
+		expression ==MINUS ||
+		expression ==KALI ||
+		expression ==BAGI ||
+		expression ==AKAR_KUADRAT ||
+		expression ==PANGKAT ||
+		expression ==PERSENTASE)
+		return true;
+	return false;
+}
+
+bool isBracket(char expression){
+	if(expression == KURUNG_BUKA || expression == KURUNG_TUTUP)
+		return true;
+	return false;
+}
+void checkForFormatting(char *expression){
+	checkWhiteSpace(expression);
+	checkFrontBracketAsKali(expression);
+	checkFrontMinus(expression);
+}
+void checkWhiteSpace(char *expression){
+	int count,countFromWS;
+	for(count = 0 ;expression[count] !='\0'; count++){
+		if(expression[count] == ' ' ){
+			for(countFromWS=count;expression[countFromWS+1] != '\0';countFromWS++){
+				expression[countFromWS] = expression[countFromWS+1];
+				expression[countFromWS+1] = '\0';
+			}
+		}
+	}
+}
+void checkFrontMinus(char *expression)
     {
         /**
          * Mengecek apakah simbol pertama merupakan minus
@@ -280,9 +349,9 @@ return true;
          * FS2 : ekspresi string tidak dimanipulasi
          */
         int forLoop;
-        if (expression[0] = '-')
+        if (expression[0] == '-')
         {
-            for (forLoop = strlen(expression) - 1; forLoop >= 0; forLoop--)
+            for (forLoop = countStringLength(expression); forLoop >= 0; forLoop--)
             {
                 expression[forLoop + 1] = expression[forLoop];
             }
@@ -290,14 +359,39 @@ return true;
         }
     }
 
-    void insertExpression(Calculator * calculator)
+void checkFrontBracketAsKali(char *expression){
+	int count,countFromBracket,countTemp,countLength;
+	char temp[countStringLength(expression)+20];
+	for(count = 0;expression[count] !='\0'; count++){
+		countTemp = 0;
+		countFromBracket = 0;
+		if((isdigit(expression[count-1])||expression[count-1]==')') && expression[count] == '(' ){
+			countLength= 0;
+			for(countFromBracket=count;expression[countFromBracket] != '\0';countFromBracket++){
+				temp[countTemp] = expression[countFromBracket];
+				countTemp++;
+				countLength++;
+			}
+			countFromBracket=count;
+			for(countTemp = 0;countTemp<countLength;countTemp++){
+				expression[countFromBracket+1] = temp[countTemp];
+				temp[countTemp] = '\0';
+				countFromBracket++;
+			}
+			expression[count] = '*';
+		}
+	}
+}
+
+void insertExpression(Calculator * calculator)
     {
         // meminta input dari pengguna
         printf("\n\n");
         // gridLayout();
         printf("Enter your mathematical expression: ");
         fflush(stdin);
-        scanf("%s", calculator->input);
+        gets(calculator->input);
+        printf("%s",calculator->input);
         printf("\n\n");
 
         /**
@@ -307,7 +401,7 @@ return true;
          */
     }
 
-    bool isCalculationSuccess(Calculator * calculator, addrNode Node)
+bool isCalculationSuccess(Calculator * calculator, addrNode Node)
     {
         /**
          * Melakukan kalkulasi ekspresi matematika pada tree
@@ -315,11 +409,50 @@ return true;
          * Mengembalikan false jika proses kalkulasi gagal
          */
         bool isSuccess = true;
+
         calculator->result = startCalculation(Node, &isSuccess);
+
+        return isSuccess;
     }
 
-    void printResult(Calculator calculator, bool isSuccess)
+void printResult(Calculator calculator, bool isSuccess)
     {
+        system("cls");
+	
+	// print calculator sesuai dengan format
+    if(!isSuccess){
+    	// jika proses kalkulasi tidak berhasil
+        printf("\n\n");
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33s","Math Error: Can't Divide by Zero");
+        printf("\xB3   \xB3\n");
+        sleep(2);
+    }
+    else if (ceil(calculator.result) > calculator.result){
+    	// jika proses kalkulasi berhasil dan hasilnya adalah bilangan desimal
+        printf("\n\n");
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33f",calculator.result);
+        printf("\xB3   \xB3\n");
+
+    }
+	else{
+		// jika proses kalkulasi berhasil dan hasilnya adalah bilangan bulat
+        printf("\n\n");
+
+        printf("  \xB3  \xB3");
+        printf("  %-35s",calculator.input);
+        printf("\xB3   \xB3\n");
+        printf("  \xB3  \xB3");
+        printf("  = %-33d",(int)calculator.result);
+        printf("\xB3   \xB3\n");
+    }
         /**
          * Menampilkan hasil expresi
          * IS : layar kosong
@@ -340,9 +473,9 @@ return true;
             printf("continue? y/n : ");
             fflush(stdin);
             scanf("%c", &choice);
-            if (choice == "Y" || choice == "y")
+            if (choice == 'Y' || choice == 'y')
                 return true;
-            else if (choice == "N" || choice == "n")
+            else if (choice == 'N' || choice == 'n')
                 return false;
             else
             {

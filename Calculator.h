@@ -62,7 +62,18 @@ bool isValidExpression(char *expression);
  * Mengembalikan true jika tidak ada karakter ilegal
  * Mengembalikan false jika terdapat karakter ilegal
  */
- 
+bool checkInputAsRule(char expression[]);
+bool isBracketEqual(char expression[]);
+bool isOperator(char expression);
+/*
+* mengecek apakah karakter dari input user merupakan salah satu karakter Operator (tambah,kurang,bagi,dll)
+*/
+bool isBracket(char expression);
+/*
+* mengecek apakah karakter dari input user merupakan karakter kurung (kurung buka maupun kurung tutup).
+*/
+void checkForFormatting(char *expression);
+void checkWhiteSpace(char *expression);
 void checkFrontMinus(char *expression);
 /**
  * Mengecek apakah simbol pertama merupakan minus
@@ -70,7 +81,7 @@ void checkFrontMinus(char *expression);
  * FS1 : ekspresi string digeser ke kanan 1, dan pada index 0 insert '0'
  * FS2 : ekspresi string tidak dimanipulasi
  */
- 
+void checkFrontBracketAsKali(char *expression);
 void insertExpression(Calculator *calculator);
 /**
  * Memasukan string ekspresi kedalam kalkulator

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include "AdditionalModule.h"
 #include <ctype.h> //untuk parsing dari input string
 
 #define KURUNG_BUKA '('
@@ -34,4 +35,5 @@ typedef struct TNode{
 double result;
 char UserInput[100];
 
+int countStringLength(char String[]);
 #endif
