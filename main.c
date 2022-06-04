@@ -2,8 +2,6 @@
 #include <stdlib.h>
 
 #include "Calculator.h"
-#include "CalculatorMain.c"
-#include "appUI.c"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
