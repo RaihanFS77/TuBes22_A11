@@ -1,0 +1,21 @@
+ ==============
+|Konveri Satuan|
+ ==============
+
+Pada konversi satuan dapat mengkonversi satuan :
+
+waktu (jam,menit,detik), 
+satuan berat (kilo, Ons, dan gram)
+suhu (celcius, fahrenheit, dan kelvin). 
+
+Perhitungan yang bisa dilakukan adalah memilih satuan awal yang ada pada lingkup satuan tertentu 
+lalu menginput suatu bilangan dan hasilnya akan berupa konversi ke setiap satuan yang ada pada lingkup satuan tersebut.
+
+Contoh :
+User memilih konversi satuan dari menu utama lalu memilih satuan berat lalu memilih kilo, 
+ketika user menginput angka 13 maka akan menghasilkan output dari satuan kilo ke satuan Ons dan gram
+
+Output : “13.00 kilo sama dengan 130.00 ons
+ 13.00 kilo sama dengan 1300.00 gram”
+
+                        [ Tekan tombol apapun untuk kembali ]

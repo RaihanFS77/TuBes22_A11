@@ -2,63 +2,48 @@
 #include <stdlib.h>
 
 #include "Calculator.h"
-
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
 
 	Calculator kalkulator;
 
+	titleScreen();
 	
-	while(true){
-		StartOfCalc:
+
+	menu:
 	system("cls");
-		//Inisialisasi Kalkulator
-		createCalculator(&kalkulator);
 
-		//Input ekspresi matematika
-		insertExpression(&kalkulator);
+	int pilihan = optMenu();
+	switch(pilihan){
+		case 1:
+			printf("1");
+			calcOpt();
+			goto menu;
 
-		//Melakukan reformatting apabila ditemukan kejanggalan
-		checkForFormatting(&kalkulator.input);
-		printf("%s",kalkulator.input);
-		getch();
-		
-		//Melakukan test validasi ekspresi matematis
-		if(!isValidExpression(kalkulator.input)){
-			sleep(1);
-			goto StartOfCalc;
-		}
+		case 2:
+			printf("2");
 
-		
+			break;
 
-	//Memasukan ekspresi menjadi binary tree
-	kalkulator.CalcTree = expressionToTree(kalkulator.input,0,countStringLength(kalkulator.input)-1);
+		case 3:
+			printf("3");
+			howTo();
+			goto menu;
 
-	//Start the calculation process
-		bool sukses = true;
-		kalkulator.result = startCalculation(kalkulator.CalcTree,&sukses);
+		case 4:
+			printf("4");
+			readHistory();
+			getch();
+			goto menu;
 
-	//Print the result
-	printResult(kalkulator,sukses);
+		case 5:
+			printf("\n\n Selamat Tinggal !");
+			return;
 
-	//Dealokasi Tree
-	deleteTree(kalkulator.CalcTree);
-
-	//Apabila success maka disimpan data nya ke history
-	if(sukses){
-	saveHistory(kalkulator.input,kalkulator.result);
-	}
-
-	if(!stayCalculating()){
-		break;
-	}
+		default :
+			goto menu;
 
 	}
 	
-
-
-	
-
-	return 0;
 }

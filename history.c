@@ -60,7 +60,7 @@ int readHistory(){  //
         
     fclose(pFile);
 
-    printf("\n\n\n  Press F1 on your keyboard to main menu"); 
+    printf("\n\n\n  [] Tekan tombol apapun untuk kembali []"); 
 
     return 0;
 }
