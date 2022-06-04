@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 		case 1:
 			printf("1");
 			calcOpt();
-			break;
+			goto menu;
 
 		case 2:
 			printf("2");

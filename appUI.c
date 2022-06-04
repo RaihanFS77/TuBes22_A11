@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <conio.h>
-#include <unistd.h>
 #include <windows.h>
 
 void titleScreen(){
