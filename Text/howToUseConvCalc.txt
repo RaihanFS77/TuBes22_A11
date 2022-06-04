@@ -15,7 +15,7 @@ Contoh :
 User memilih konversi satuan dari menu utama lalu memilih satuan berat lalu memilih kilo, 
 ketika user menginput angka 13 maka akan menghasilkan output dari satuan kilo ke satuan Ons dan gram
 
-Output : “13.00 kilo sama dengan 130.00 ons
- 13.00 kilo sama dengan 1300.00 gram”
+Output : [ 13.00 kilo sama dengan 130.00 ons   ]
+         [ 13.00 kilo sama dengan 1300.00 gram ]
 
                         [ Tekan tombol apapun untuk kembali ]

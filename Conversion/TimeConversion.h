@@ -5,6 +5,10 @@
 typedef float jam;
 typedef float menit;
 typedef float detik;
+//main program for time conversion
+void timeConvMain();
+// get value to convert
+int getTimeValueToConv();
 //konversi jam ke menit
 menit jamToMenit(jam toConvert);
 //konversi menit ke detik

@@ -5,6 +5,10 @@
 typedef float Kilo;
 typedef float Ons;
 typedef float Gram;
+//main module in mass conversion
+void massConvMain();
+//meminta input dari user untuk dikonversi
+float getMassValueToConv();
 //konversi dari kilogram ke ons
 Ons KiloToOns(Kilo toConvert);
 //konversi dari ons ke gram

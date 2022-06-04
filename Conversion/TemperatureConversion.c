@@ -1,5 +1,34 @@
 #include "TemperatureConversion.h"
-
+void temperatureConvMain(){
+	int choice;
+	startingPoint:
+	printf("\n\n\n\n");
+	printf("\t\t[1] konversi dari celcius\n");
+	printf("\t\t[2] konversi dari fahrenheit\n");
+	printf("\t\t[3] konversi dari kelvin\n");
+	printf("\t\tMasukkan pilihan anda : ");
+	scanf("%d",&choice);
+	switch(choice){
+		case 1 : 
+		system("cls");
+		fromCelcius(getTemperatureValueToConv());break;
+		case 2 : 
+		system("cls");
+		fromFahrenheit(getTemperatureValueToConv());break;
+		case 3 : 
+		system("cls");
+		fromKelvin(getTemperatureValueToConv());break;
+		default : printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
+	}
+	printf("\n\t\t[]Tekan tombol apapun untuk kembali[]");
+	getch();
+}
+float getTemperatureValueToConv(){
+	float value;
+	printf("masukkan angka yang akan dikonversi : ");
+	scanf("%f",&value);
+	return value;
+}
 //Fahrenheit to Celcius
 Celcius FToC(Fahrenheit toConvert){
 	return ((toConvert -32) *5/9);

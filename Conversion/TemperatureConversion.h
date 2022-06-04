@@ -5,6 +5,10 @@
 typedef float Celcius;
 typedef float Fahrenheit;
 typedef float Kelvin;
+//main program for temperature conversion
+void temperatureConvMain();
+//gettingg value to convert
+float getTemperatureValueToConv();
 //Fahrenheit to Celcius
 Celcius FToC(Fahrenheit toConvert);
 //Kelvin to Celcius
