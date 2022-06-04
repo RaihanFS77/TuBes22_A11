@@ -65,7 +65,7 @@ double startCalculation(addrNode Node, bool *isSuccess)
 
     return Node->number;
     /**
-     * Original Source : https://www.programmersought.com/article/95294413292/
+     * Original Source : https://www.programmersought.com/article/95294413292/ dan https://github.com/zharmedia386/CalculatorUsingBinaryTree
      * Melakukan perhitungan terhadap suatu sub-tree
      * Mengembalikan hasil perhitungan jika terdapat operator (Node berisi operator)
      * Mengembalikan nilai number jika tidak terdapat operator (Node berisi number)

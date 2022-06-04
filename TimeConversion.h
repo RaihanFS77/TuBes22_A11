@@ -5,14 +5,18 @@
 typedef float jam;
 typedef float menit;
 typedef float detik;
-//jam ke menit
+//konversi jam ke menit
 menit jamToMenit(jam toConvert);
-//menit ke detik
+//konversi menit ke detik
 detik menitToDetik(menit toConvert);
-//detik ke menit
+//konversi detik ke menit
 menit detikToMenit(detik toConvert);
+//konversi menit ke jam
 jam menitToJam(menit toConvert);
 void konversiJam(jam toConvert);
+//konversi dari jam
 void konversiMenit(menit toConvert);
+//konversi dari menit
 void konversiDetik(detik toConvert);
+//konversi dari detik
 #endif
