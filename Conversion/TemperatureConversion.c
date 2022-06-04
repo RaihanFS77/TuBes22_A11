@@ -2,17 +2,26 @@
 void temperatureConvMain(){
 	int choice;
 	startingPoint:
-	printf("1. konversi dari celcius\n");
-	printf("2. konversi dari fahrenheit\n");
-	printf("3. konversi dari kelvin\n");
-	printf("masukkan pilihan anda : ");
+	printf("\n\n\n\n");
+	printf("\t\t[1] konversi dari celcius\n");
+	printf("\t\t[2] konversi dari fahrenheit\n");
+	printf("\t\t[3] konversi dari kelvin\n");
+	printf("\t\tMasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){
-		case 1 : fromCelcius(getTemperatureValueToConv());break;
-		case 2 : fromFahrenheit(getTemperatureValueToConv());break;
-		case 3 : fromKelvin(getTemperatureValueToConv());break;
+		case 1 : 
+		system("cls");
+		fromCelcius(getTemperatureValueToConv());break;
+		case 2 : 
+		system("cls");
+		fromFahrenheit(getTemperatureValueToConv());break;
+		case 3 : 
+		system("cls");
+		fromKelvin(getTemperatureValueToConv());break;
 		default : printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
 	}
+	printf("\n\t\t[]Tekan tombol apapun untuk kembali[]");
+	getch();
 }
 float getTemperatureValueToConv(){
 	float value;

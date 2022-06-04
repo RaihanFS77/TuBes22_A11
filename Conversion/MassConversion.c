@@ -2,18 +2,26 @@
 void massConvMain(){
 	int choice;
 	startingPoint:
-	printf("1. konversi dari kilogram\n");
-	printf("2. konversi dari ons\n");
-	printf("3. konversi dari gram\n");
-	printf("masukkan pilihan anda : ");
+	printf("\n\n\n\n");
+	printf("\t\t[1] konversi dari kilogram\n");
+	printf("\t\t[2] konversi dari ons\n");
+	printf("\t\t[3] konversi dari gram\n");
+	printf("\t\tmasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){
-		case 1 : fromKilo(getMassValueToConv());break;
-		case 2 : fromOns(getMassValueToConv());break;
-		case 3 : fromGram(getMassValueToConv());break;
+		case 1 : 
+		system("cls");
+		fromKilo(getMassValueToConv());break;
+		case 2 : 
+		system("cls");
+		fromOns(getMassValueToConv());break;
+		case 3 : 
+		system("cls");
+		fromGram(getMassValueToConv());break;
 		default : printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
 	}
-	
+	printf("\n\t\t[]Tekan tombol apapun untuk kembali[]");
+	getch();
 }
 float getMassValueToConv(){
 	float value;

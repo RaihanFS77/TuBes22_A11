@@ -2,17 +2,26 @@
 void timeConvMain(){
 	int choice;
 	startingPoint:
-	printf("1. konversi dari jam\n");
-	printf("2. konversi dari menit\n");
-	printf("3. konversi dari detik\n");
-	printf("masukkan pilihan anda : ");
+	printf("\n\n\n\n");
+	printf("\t\t[1] konversi dari jam\n");
+	printf("\t\t[2] konversi dari menit\n");
+	printf("\t\t[3] konversi dari detik\n");
+	printf("\t\tMasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){
-		case 1 : konversiJam(getTimeValueToConv());break;
-		case 2 : konversiMenit(getTimeValueToConv());break;
-		case 3 : konversiDetik(getTimeValueToConv());break;
+		case 1 : 
+		system("cls");
+		konversiJam(getTimeValueToConv());break;
+		case 2 : 
+		system("cls");
+		konversiMenit(getTimeValueToConv());break;
+		case 3 : 
+		system("cls");
+		konversiDetik(getTimeValueToConv());break;
 		default : printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
 	}
+	printf("\n\t\t[]Tekan tombol apapun untuk kembali[]");
+	getch();
 }
 int getTimeValueToConv(){
 	int value;

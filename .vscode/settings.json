@@ -31,6 +31,8 @@
     "**/.vscode/**"
   ],
   "files.associations": {
-    "calctree.h": "c"
+    "calctree.h": "c",
+    "massconversion.h": "c",
+    "calculator.h": "c"
   }
 }
