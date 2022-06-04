@@ -5,11 +5,18 @@
 typedef float Kilo;
 typedef float Ons;
 typedef float Gram;
+//konversi dari kilogram ke ons
 Ons KiloToOns(Kilo toConvert);
+//konversi dari ons ke gram
 Gram OnsToGram(Ons toConvert);
-Ons GramToOns(Gram toConvert);
+//konversi dari gram ke ons
+Ons GramToOns(Gram toConver);
+//konversi dari ons ke kilogram
 Kilo OnsToKilo(Ons toConvert);
+//konversi dari kilogram
 void fromKilo(Kilo mass);
+////konversi dari ons
 void fromOns(Ons mass);
+//konversi dari gram
 void fromGram(Gram mass);
 #endif

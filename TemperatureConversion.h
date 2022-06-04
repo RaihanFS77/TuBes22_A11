@@ -16,10 +16,4 @@ Fahrenheit CToF(Celcius toConvert);
 void fromCelcius(Celcius temperature);
 void fromKelvin(Kelvin temperature);
 void fromFahrenheit(Fahrenheit temperature);
-void celciusToFahrenheit(Celcius toConvert);
-void celciusToKelvin(Celcius toConvert);
-void fahrenheitToCelcius(Fahrenheit toConvert);
-void fahrenheitToKelvin(Fahrenheit toConvert);
-void KelvinToCelcius(Kelvin toConvert);
-void KelvinToFahrenheit(Kelvin toConvert);
 #endif
