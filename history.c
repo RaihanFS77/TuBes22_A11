@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include "CalcTree.h"
-
-struct history{
-    char input[200];
-    double hasil;
-    char waktu[200];
-}Record;
+#include "history.h";
 
 int saveHistory(char *_input, double _hasil){
     FILE* storage = 0;

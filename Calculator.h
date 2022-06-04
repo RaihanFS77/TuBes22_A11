@@ -1,4 +1,5 @@
 #include "CalcTree.h"
+#include "history.h"
 #ifndef Calculator_H
 #define Calculator_H
 
