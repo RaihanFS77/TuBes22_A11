@@ -1,0 +1,17 @@
+Pada program ini terdapat 2 fitur utama, yaitu perhitungan konversi satuan dan kalkulator.
+ ==========
+|Kalkulator|
+ ==========
+Pada kalkulator dapat menghitung kalkulasi dasar seperti tambah, kurang, kali, bagi, pangkat, dan akar.
+Berikut simbol yang digunakan :
+(+) sebagai simbol penjumlahan
+(-) sebagai simbol pengurangan
+(*) sebagai simbol perkalian
+(/) sebagai simbol perbagian
+(^) sebagai simbol perpangkatan
+(v) sebagai simbol perkaran
+Berikut hal yang harus diperhatikan user ketika menggunakan kalkulator :
+*user dapat menggunakan kurung setelah angka sebagai pengganti simbol kali
+  contoh: 2(3+1) akan sama dengan 2*(3+1)
+*user dapat menggunakan white space dalam input (tidak akan mempengaruhi perhitungan)
+*user dapat menginputkan angka negatif diawal
