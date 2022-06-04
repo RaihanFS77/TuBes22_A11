@@ -387,7 +387,7 @@ void insertExpression(Calculator * calculator)
         // meminta input dari pengguna
         printf("\n\n");
         // gridLayout();
-        printf("Enter your mathematical expression: ");
+        printf("\t\t[] Enter your mathematical expression: ");
         fflush(stdin);
         gets(calculator->input);
         printf("%s",calculator->input);

@@ -5,11 +5,10 @@
 #include <conio.h>
 #include <unistd.h>
 #include <windows.h>
-#include "appUI.h"
 
 void titleScreen(){
     int i = 6;
-    char *title = "titleScreen.txt";
+    char *title = "Text/titleScreen.txt";
     FILE *fp = fopen(title,"r");
 
     if (fp == NULL){
@@ -48,7 +47,7 @@ void themeSong(){
 
 void mainMenu(){
     int i = 6;
-    char *title = "mainMenu.txt";
+    char *title = "Text/mainMenu.txt";
     FILE *fp = fopen(title,"r");
 
     if (fp == NULL){
@@ -80,5 +79,107 @@ int optMenu(){
     scanf("%d", &pilihan);
 
     return pilihan;
+}
+
+void howTo(){
+
+    ass:
+    system("cls");
+    fflush(stdin);
+
+    int i = 6;
+    char *title = "Text/HowToUse.txt";
+    FILE *fp = fopen(title,"r");
+
+    if (fp == NULL){
+        printf("Error : File could not be read");
+        return;
+    }
+
+    const unsigned MAX_LENGTH = 256;
+    char buffer[MAX_LENGTH];
+    while(i > 0){
+        printf("\n");
+        i--;
+    }
+    
+    while(fgets(buffer,MAX_LENGTH,fp)){
+        printf("%s", buffer);
+    }
+    fclose(fp);
+
+    int pilihan;
+    scanf("%d", &pilihan);
+    
+
+    switch(pilihan){
+        case 1:
+        system("cls");
+        htCalc();
+        break;
+
+        case 2:
+        system("cls");
+        htConv();
+        break;
+
+        default:
+        goto ass;
+
+    }
+    getch();
+    return;
+}
+
+void htCalc(){
+    int i = 6;
+    char *title = "Text/HowToUseCalc.txt";
+    FILE *fp = fopen(title,"r");
+
+    if (fp == NULL){
+        printf("Error : File could not be read");
+        return;
+    }
+
+    const unsigned MAX_LENGTH = 256;
+    char buffer[MAX_LENGTH];
+    while(i > 0){
+        printf("\n");
+        i--;
+    }
+    
+    while(fgets(buffer,MAX_LENGTH,fp)){
+        printf("%s", buffer);
+    }
+    fclose(fp);
+    sleep(1);
+
+    return;
+}
+
+void htConv(){
+    int i = 6;
+    char *title = "Text/HowToUseConvCalc.txt";
+    FILE *fp = fopen(title,"r");
+
+    if (fp == NULL){
+        printf("Error : File could not be read");
+        return;
+    }
+
+    const unsigned MAX_LENGTH = 256;
+    char buffer[MAX_LENGTH];
+    while(i > 0){
+        printf("\n");
+        i--;
+    }
+    
+    while(fgets(buffer,MAX_LENGTH,fp)){
+        printf("%s", buffer);
+    }
+    fclose(fp);
+    sleep(1);
+
+    return;
 }
 #endif

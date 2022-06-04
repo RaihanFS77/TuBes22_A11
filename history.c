@@ -1,4 +1,13 @@
-#include "history.h";
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include "CalcTree.h"
+
+struct history{
+    char input[200];
+    double hasil;
+    char waktu[200];
+}Record;
 
 int saveHistory(char *_input, double _hasil){
     FILE* storage = 0;
@@ -51,7 +60,7 @@ int readHistory(){  //
         
     fclose(pFile);
 
-    printf("\n\n\n  Press F1 on your keyboard to main menu"); 
+    printf("\n\n\n  [] Tekan tombol apapun untuk kembali []"); 
 
     return 0;
 }

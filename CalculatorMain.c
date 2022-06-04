@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "Calculator.h"
+#include "history.c"
 
 void calcOpt(){
     
@@ -51,5 +52,5 @@ void calcOpt(){
 
 	}
 
-	return 0;
+	return ;
 }
