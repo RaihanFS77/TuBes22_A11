@@ -46,14 +46,14 @@ Fahrenheit CToF(Celcius toConvert){
 	return ((toConvert * 9/5) + 32);
 }
 void fromCelcius(Celcius temperature){
-	printf("%.2f celcius sama dengan %.2f fahrenheit\n",temperature,CToF(temperature));
-	printf("%.2f celcius sama dengan %.2f kelvin\n",temperature,CToK(temperature));
+	printf("\n%.2f celcius sama dengan %.2f Fahrenheit\n",temperature,CToF(temperature));
+	printf("\n%.2f celcius sama dengan %.2f Kelvin\n",temperature,CToK(temperature));
 }
 void fromKelvin(Kelvin temperature){
-	printf("%.2f kelvin sama dengan %.2f celcius\n",temperature,KToC(temperature));
-	printf("%.2f kelvin sama dengan %.2f celcius\n",temperature,CToF(KToC(temperature)));
+	printf("\n%.2f kelvin sama dengan %.2f Celcius \n",temperature,KToC(temperature));
+	printf("\n%.2f kelvin sama dengan %.2f Fahrenheit\n",temperature,CToF(KToC(temperature)));
 }
 void fromFahrenheit(Fahrenheit temperature){
-	printf("%.2f fahrenheit sama dengan %.2f celcius\n",temperature,FToC(temperature));
-	printf("%.2f fahrenheit sama dengan %.2f celcius\n",temperature,CToK(FToC(temperature)));
+	printf("\n%.2f fahrenheit sama dengan %.2f Celcius\n",temperature,FToC(temperature));
+	printf("\n%.2f fahrenheit sama dengan %.2f Celcius\n",temperature,CToK(FToC(temperature)));
 }
