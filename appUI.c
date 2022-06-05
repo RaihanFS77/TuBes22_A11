@@ -131,7 +131,7 @@ void howTo(){
 }
 
 void htCalc(){
-    int i = 6;
+    int i = 4;
     char *title = "Text/HowToUseCalc.txt";
     FILE *fp = fopen(title,"r");
 
@@ -157,7 +157,7 @@ void htCalc(){
 }
 
 void htConv(){
-    int i = 6;
+    int i = 4;
     char *title = "Text/HowToUseConvCalc.txt";
     FILE *fp = fopen(title,"r");
 
