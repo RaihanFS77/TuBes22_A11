@@ -24,6 +24,6 @@ int calcConv() {
 		case 3 : 
 			system("cls");
 			timeConvMain();break;
-		default : printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
+		default : system("cls");printf("pilihan tersebut tidak ada\n");goto startingPoint;break;
 	}	
 }

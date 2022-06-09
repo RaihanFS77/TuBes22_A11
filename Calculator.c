@@ -200,6 +200,7 @@ addrNode expressionToTree(char input[], int start, int end)
      * Membuat expression tree
      * Mengembalikan tree yang telah berisi expression
      */
+    
     double num;
     addrNode Node = (addrNode)malloc(sizeof(struct TNode));
     if (start > end)
@@ -385,11 +386,17 @@ void checkFrontBracketAsKali(char *expression){
 void insertExpression(Calculator * calculator)
     {
         // meminta input dari pengguna
+        char* temp[500];
         printf("\n\n");
         // gridLayout();
         printf("\t\t[] Enter your mathematical expression: ");
         fflush(stdin);
-        gets(calculator->input);
+        gets(temp);
+        if(strlen(temp)>=200){
+            calculator->input[0] = "a";
+        }else{
+            strcpy(calculator->input,temp);
+        }
         printf("%s",calculator->input);
         printf("\n\n");
 

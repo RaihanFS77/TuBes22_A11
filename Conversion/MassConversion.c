@@ -3,9 +3,9 @@ void massConvMain(){
 	int choice;
 	startingPoint:
 	printf("\n\n\n\n");
-	printf("\t\t[1] konversi dari kilogram\n");
-	printf("\t\t[2] konversi dari ons\n");
-	printf("\t\t[3] konversi dari gram\n");
+	printf("\t\t[1] konversi dari kilogram ke ons dan gram\n");
+	printf("\t\t[2] konversi dari ons ke kilogram dan gram\n");
+	printf("\t\t[3] konversi dari gram ke kilogram dan ons\n");
 	printf("\t\tmasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){

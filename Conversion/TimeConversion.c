@@ -3,9 +3,9 @@ void timeConvMain(){
 	int choice;
 	startingPoint:
 	printf("\n\n\n\n");
-	printf("\t\t[1] konversi dari jam\n");
-	printf("\t\t[2] konversi dari menit\n");
-	printf("\t\t[3] konversi dari detik\n");
+	printf("\t\t[1] konversi dari jam ke menit dan detik\n");
+	printf("\t\t[2] konversi dari menit ke jam dan detik\n");
+	printf("\t\t[3] konversi dari detik ke jam dan menit\n");
 	printf("\t\tMasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){
