@@ -3,9 +3,9 @@ void temperatureConvMain(){
 	int choice;
 	startingPoint:
 	printf("\n\n\n\n");
-	printf("\t\t[1] konversi dari celcius\n");
-	printf("\t\t[2] konversi dari fahrenheit\n");
-	printf("\t\t[3] konversi dari kelvin\n");
+	printf("\t\t[1] konversi dari celcius ke fahrenheit dan kelvin\n");
+	printf("\t\t[2] konversi dari fahrenheit ke celcius dan kelvin\n");
+	printf("\t\t[3] konversi dari kelvin ke celcius dan fahrenheit\n");
 	printf("\t\tMasukkan pilihan anda : ");
 	scanf("%d",&choice);
 	switch(choice){
@@ -55,5 +55,5 @@ void fromKelvin(Kelvin temperature){
 }
 void fromFahrenheit(Fahrenheit temperature){
 	printf("\n%.2f fahrenheit sama dengan %.2f Celcius\n",temperature,FToC(temperature));
-	printf("\n%.2f fahrenheit sama dengan %.2f Celcius\n",temperature,CToK(FToC(temperature)));
+	printf("\n%.2f fahrenheit sama dengan %.2f Kelvin\n",temperature,CToK(FToC(temperature)));
 }
