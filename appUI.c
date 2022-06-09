@@ -82,7 +82,7 @@ int optMenu(){
 
 void howTo(){
 
-    ass:
+    anchor:
     system("cls");
     fflush(stdin);
 
@@ -123,7 +123,7 @@ void howTo(){
         break;
 
         default:
-        goto ass;
+        goto anchor;
 
     }
     getch();

@@ -12,6 +12,11 @@ Berikut simbol yang digunakan :
 (^) sebagai simbol perpangkatan
 (v) sebagai simbol perkaran
 
+Alur jalan penggunaan fitur kalkulator yang pertama dan paling utama dimana pengguna akan diminta 
+untuk memasukan suatu ekspresi matematika dalam notasi infix.
+
+Notasi infix adalah sebagai berikut : 2(5+12)-1
+
 Berikut hal yang harus diperhatikan user ketika menggunakan kalkulator :
 
 *user dapat menggunakan kurung setelah angka sebagai pengganti simbol kali
